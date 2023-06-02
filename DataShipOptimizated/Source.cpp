@@ -3,6 +3,8 @@
 # include <vector>
 #include <string>
 #include <conio.h>
+#include <fstream>
+
 
 using namespace std;
 
@@ -40,7 +42,7 @@ void DisplayMenu() {
 		cout << "2: show all ships" << endl;
 		cout << "3: edit ship" << endl;
 		cout << "4: delete ship" << endl;
-		cout << "5: save ship(relese in tomorow)" << endl;
+		cout << "5: save ship" << endl;
 		cout << "6: exit" << endl;
 		cout << "choose action -> ";
 		cin >> userChoose;
@@ -208,13 +210,97 @@ void DeleteShip() {
 	UserShips.erase(UserShips.begin()+ userChooseShipToEdit);
 }
 
+void SaveShip() {
 
+	ofstream Data("C:\\Users\\Zhrat\\source\\repos\\DataShipOptimizated\\DataShipOptimizated\\Data.txt");
+
+	if (Data.is_open()) {
+
+		for (auto s : UserShips) {
+
+			Data << s.name << " | " << s.type << " | " << s.speed << " | " << s.fuel << " | " << s.refuel <<endl;
+
+
+		}
+		cout << "Ships saved"<< endl; 
+		Data.close();
+
+	}
+	else
+	{
+		cout << "File not open";
+	}
+
+}
+
+void LoadShip() {
+	
+	ifstream Data("C:\\Users\\Zhrat\\source\\repos\\DataShipOptimizated\\DataShipOptimizated\\Data.txt");
+
+	if (Data.is_open()) {
+
+		string line;
+
+		while (getline(Data, line))
+		{
+			string type;
+			string name;
+			int speed;
+			int fuel;
+			int refuel;
+			
+			size_t pos = 0;
+			string token;
+			int i = 0;
+
+			while ((pos = line.find(" | ")) !=  string::npos )
+			{
+				token = line.substr(0, pos);
+				switch (i)
+				{
+				case 1: {
+					name = token;
+					break;
+				}
+				case 2: {
+					type = token;
+					break;
+				}
+				case 3: {
+					speed = stoi(token);
+					break;
+				}
+				case 4: {
+					fuel = stoi(token);
+					break;
+				}
+				case 5: {
+					refuel = stoi(token);
+					break;
+				}
+				}
+				line.erase(0, pos + 1);
+				i++;
+			}
+			SpaceShip s(name, type, speed, fuel, refuel);
+			UserShips.push_back(s);
+		}
+		cout << "Ships loaded" << endl;
+		Data.close();
+	}
+	else
+	{
+		cout << "File not open";
+	}
+
+}
 
 
 int main() {
 	do
 	{
 		system("cls");
+		LoadShip();
 		DisplayMenu();
 		switch (userChoose)
 		{
@@ -242,9 +328,11 @@ int main() {
 			break;
 		}
 		case 5: {
-
-
-
+			system("cls");
+			SaveShip();
+			cout << "Press any key to go menu";
+			_getch();
+			break;
 		}
 		case 6: {
 			system("cls");
