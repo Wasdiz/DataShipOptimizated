@@ -1,20 +1,2 @@
-Saturn A 100 100 5 
-Saturn B 50 300 10 
-Saturn S 200 100 3 
-Mehanotronic A 25 500 10 
-Bamkitus A 1000 500 10 
-Parabellum A 1900 250 10 
-Stellaris A 1250 100 5 
-Valeri A 125 50 1 
-Valeri B 260 100 10 
-Mefedroni A 1000 250 10 
-Mefedroni B 2500 1000 100 
-Mefedroni C 3000 2000 1000 
-Bochka A 150 10 25 
-Bochka B 250 25 50 
-Blembus 1000 500 250 10 
-Blumbus B 500 250 50 
-Scarlxd A 350 100 5 
-Scarlxd B 600 250 2 
-Union A 100000 500000 50 
-Union B 2500000 500000 51 
+aba bab 100 100 100 10000 12400% yes 
+a a 100 100 10 100 0% yes 
